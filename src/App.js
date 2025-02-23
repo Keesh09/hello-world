@@ -1,48 +1,10 @@
-import { useEffect, useState } from "react";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
-import Search from "./components/Search.jsx";
-import Card from "./components/Card.jsx";
-import axios from "axios";
+import Calculator from "./components/Calculator.jsx";
+import "./components/Calculator.css";
 
 function App() {
-  const [weather, setWeather] = useState(null);
-  const [city, setCity] = useState("Tokyo");
-
-  const fetchData = async () => {
-    const appKey = `963f057264bc184bb35d4e2daa180b5e`;
-
-    try {
-      const res = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appKey}&units=metric`
-      );
-      setWeather(res.data);
-      console.log(res.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const handleSearch = async (cityName) => {
-    setCity(cityName);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, [city]);
-
   return (
     <>
-      <div className="w-full bg-gray-200 d-flex flex-column justify-content-center align-items-center min-vh-100">
-        <h1>Weather App</h1>
-        <div
-          className="shadow-lg d-flex flex-column align-items-center py-5 gap-4"
-          style={{ minWidth: 500 }}
-        >
-          <Search handleSearch={handleSearch} />
-          <Card weather={weather} />
-        </div>
-      </div>
+      <Calculator />
     </>
   );
 }
