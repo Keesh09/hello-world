@@ -1,15 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-const Search = ({handleSearch}) => {
-    const [city, setCity]= useState('');
-    return (
-        <div>
-            <div className='d-flex flex-column'>
-                <input onChange={(e)=> setCity(e.target.value) } type="text" placeholder='Enter City...' className='form-control rounded-pill shoadow-sm w-auto' />
-                <button onClick={()=> handleSearch(city)}  className='btn btn-primary'>Search</button>
-            </div>
-        </div>
-    )
-}
+const Search = ({ handleSearch }) => {
+  const [city, setCity] = useState("");
 
-export default Search
+  const handleClick = () => {
+    handleSearch(city);
+    setCity("");
+  };
+
+  return (
+    <div>
+      <div className="d-flex ">
+        <input
+          onChange={(e) => setCity(e.target.value)}
+          value={city}
+          type="text"
+          placeholder="Enter City..."
+          className="form-control rounded-sm me-1 shoadow-sm w-auto "
+        />
+        <button onClick={handleClick} className="btn btn-primary">
+          Search
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Search;
